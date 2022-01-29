@@ -11,7 +11,7 @@
 # 2.模型训练
 从fairseq/fairseq/models/wav2vec/wav2vec.py/Class Wav2VecModel看训练的步骤。
 ```
-features = self.feature_extractor(source)
+features = self.feature_extractor(source) # 对应论文，encoder network
 if self.vector_quantizer:
     q_res = self.vector_quantizer(features)
     features = q_res["x"]
@@ -20,12 +20,12 @@ if self.vector_quantizer:
             result[k] = q_res[k]
 
 x = self.dropout_feats(features)
-x = self.feature_aggregator(x)
+x = self.feature_aggregator(x) # 对应论文，context network
 x = self.dropout_agg(x)
 
 if self.project_features is not None:
     features = self.project_features(features)
-x, targets = self.wav2vec_predictions(x, features)
+x, targets = self.wav2vec_predictions(x, features) # 对应论文objective，前半截公式，不是loss!
 result["cpc_logits"] = x
 result["cpc_targets"] = targets
 ```

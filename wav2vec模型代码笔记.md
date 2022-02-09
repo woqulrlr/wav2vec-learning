@@ -29,5 +29,14 @@ x, targets = self.wav2vec_predictions(x, features) # 对应论文objective，前
 result["cpc_logits"] = x
 result["cpc_targets"] = targets
 ```
+# 3.模型结构
+
+```
+encoder network(raw audio) ---> low frequency feat
+context network(low frequency feat) ---> contextualized tensor
+
+loss：是怎么计算的呢？
+```
+
 
 

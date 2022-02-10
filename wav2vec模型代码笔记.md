@@ -4,6 +4,8 @@
 # 1.模型构建
 函数调用顺序：fairseq/train.py--->fairseq/fairseq_cli/train.py(此处进行迭代训练、模型构建)--->fairseq/fairseq/task/audio_pretrainning.py--->fairseq/fairseq/task/fairseq_task.py--->fairseq/fairseq/models/wav2vec/wav2vec.py
 
+class找不到func,去class的super里面找。
+
 好好缕一缕函数调用顺序。
 表层的函数调用（包括init.py这种）
 里层的函数调用

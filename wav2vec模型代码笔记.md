@@ -36,8 +36,19 @@ result["cpc_targets"] = targets
 ```
 encoder network(raw audio) ---> low frequency feat
 context network(low frequency feat) ---> contextualized tensor
+wav2vec_prediction(low frequency feat, contextualized tensor) ---> x, target（logits, target）（predictions, labels）
+criterion(logits, target) ---> loss, sample_size, logging_output
 
 loss：是怎么计算的呢？
+
+positive_negative_feat = torch.cat(真音频feat，假音频feat)
+labels = cat的真假音频对应的0，1列表
+
+恢复后feat = 反卷积(contextualized tensor)
+logits = torch.einsum(恢复后feat, positive_negative_feat)
+
+
+binary_cross_entropy_with_logits(predictions, labels)
 ```
 
 
